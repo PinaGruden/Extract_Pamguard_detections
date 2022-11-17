@@ -1,17 +1,21 @@
 
 % Extract Tables from the Pamguard's sqlite database
 
+% !!!! Make sure you have:  !!!!!!!
+% 1) Updated Specify_paths.m for your paths to your specific folders
+
+
 clear, close all
 
 addpath('./matlab-sqlite3-driver'); 
 
 %\\\\\\\\\\\\\\\\\ Specify database \\\\\\\\\\\\\\\\\\\\\\\\\
-sqldatabase='/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/PAM20013b_HICEAS_Lasker_AC109_Trial-1b.sqlite3';
+Specify_paths
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\ Specify where to save the results \\\\\\\\\\
 S.s=1; % to save the resulting table
-S.path='/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/Extracted_Tables/';
+S.path=sqltables; %sqltables path gets configured in Specify_paths.m
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 % First you need to run extract_table_from_sqlite.m function - that
