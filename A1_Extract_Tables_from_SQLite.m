@@ -25,8 +25,12 @@ S.path=sqltables; %sqltables path gets configured in Specify_paths.m
 %-'Detection_Group_Localiser.csv'
 %-'Whistle_and_Moan_Detector.csv'
 
-
+%For whistles
 extract_table_from_sqlite(sqldatabase,'Sound_Acquisition',S);
 extract_table_from_sqlite(sqldatabase,'Detection_Group_Localiser_Children',S);
 extract_table_from_sqlite(sqldatabase,'Detection_Group_Localiser',S);
 extract_table_from_sqlite(sqldatabase,'Whistle_and_Moan_Detector',S);
+%For clicks
+extract_table_from_sqlite(sqldatabase,'Click_Detector_Clicks',S);
+extract_table_from_sqlite(sqldatabase,'Click_Detector_OfflineClicks',S);
+extract_table_from_sqlite(sqldatabase,'Click_Detector_OfflineEvents',S);
