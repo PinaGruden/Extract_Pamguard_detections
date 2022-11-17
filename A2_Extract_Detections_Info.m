@@ -2,17 +2,14 @@
 
 
 % !!!! Make sure you have:  !!!!!!!
-% 1) First run A1_Extract_Tables_from_SQLite.m
+% 1) First updated Specify_paths.m and run A1_Extract_Tables_from_SQLite.m
 % 2) Updated Specify_array_parameters.m for your array
 
 clear, close all
 
-%\\\\ Specify Folder (with path) where your Pamguard tables (.csv) are \\\\
-tablesfolder = '/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/Extracted_Tables/';
-%\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-%\\\\ Specify Folder (with path) where you want things to be saved to \\\\
-folder2save2 = '/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/';
+%\\\\\\\\\\ Configre paths for tables and where to save data \\\\\\\\\\\
+Specify_paths
+tablesfolder = sqltables; %sqltables path gets configured in Specify_paths.m
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\\\\\\\\\\\\\\\\  Get array Info  \\\\\\\\\\\\\\\\\\
@@ -61,35 +58,48 @@ start_UTC=Tables(ind).data.UTC(1);
 ind = find(strcmp({Tables.tablename}, 'Whistle_and_Moan_Detector.csv'));
 
 UID_temp = Tables(ind).data.uid;
-bearings_temp=Tables(ind).data.bearing0; %Bearing is in radians
-time_UTC=Tables(ind).data.UTC; %time for the corresponding bearing UTC;
+bearings_all=Tables(ind).data.bearing0; %Bearing is in radians
+time_UTC_all=Tables(ind).data.UTC; %time for the corresponding bearing UTC;
 %UTC column is in a datetime format
-time_diff=time_UTC-start_UTC; %get relative time (hh:mm:ss) since beginning of encounter
+time_diff=time_UTC_all-start_UTC; %get relative time (hh:mm:ss) since beginning of encounter
 time_relative_s = seconds(time_diff); %relative time in seconds since the beginning of the encounter
 
 
 [lind,loc]=ismember(UID_temp,SelectedID); %which elements of UID_temp are also in SelectedID as well as their corresponding locations in SelectedID.
 
 bearing = zeros(size(SelectedID));
-bearing(loc(lind))=bearings_temp(lind);
+bearing(loc(lind))=bearings_all(lind);
 
 time = zeros(size(SelectedID));
 time(loc(lind))=time_relative_s(lind);
+
+time_UTC=time_UTC_all(lind);
+time_UTC(loc(lind))=time_UTC;
+
 
 %convert to TDOAS
 bear2tdoa = @(x) cos(x).*(parameters.d/parameters.c); %bearings are in radians thus cos(.) instead of cosd(.)
 
 tdoa = bear2tdoa(bearing);
+tdoas_all=bear2tdoa(bearings_all);
 
 % 5) Create a table of selected bearings and a table with all bearings:
-
-%WORK ON THIS time_UTC is not quite correct
 Annotated_data = table(tdoa,bearing,time,time_UTC,ParentUID,annotatedID,SelectedID,'VariableNames',{'tdoa','bearing','time','time_UTC','groupID','annotatedID','origUID'});
-All_data = table()
+All_data = table(tdoas_all,bearings_all,time_relative_s,time_UTC_all,'VariableNames',{'tdoa','bearing','time','time_UTC'});
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+%\\\\\\\\\\\\\\\\\\\\\\\\\ PLOT \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+colors = 'rgbcmyk';
+figure, hold on
+h= gscatter(time_UTC,tdoa,annotatedID,colors,'ods<p>',6);
+for n = 1:length(h)
+  set(h(n), 'MarkerFaceColor', colors(n));
+end
+plot(time_UTC_all,tdoas_all,'k.')
+%\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\ SAVE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+save([folder2save2_info,parameters.encounter,'_Extracted_AnnotatedWhistles.mat'],'Annotated_data','All_data','parameters','sqldatabase')
+     
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
