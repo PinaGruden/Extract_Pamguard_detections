@@ -1,4 +1,24 @@
-% Specify PARAMETERS
+function [parameters]=Specify_array_parameters
+% Specify_array_parameters.m lets you specify PARAMETERS for your encouter and array
+% Make sure you change/adjust parameters under captions "Changable"
+%
+% OUTPUTS:
+% - parameters - a structure containing parameters for the encounter and 
+%               processing. It has 6 fields:
+%       ~ parameters.year - a scalar specifying the year of the survey
+%       ~ parameters.arrayname - a string specifying the array name (should
+%         match the name in Array_info.csv)
+%       ~ parameters.encounter- a string specifying the encounter name (should
+%         match the name in Array_info.csv)
+%       ~ parameters.c - a scalar specifying the speed of sound (m/s)
+%       ~ parameters.channels - 1 x 2 vector specifying sensor channels to
+%           be used for processing
+%       ~ parameters.d - a scalar specifying sensor separation (m)
+%
+%
+% Pina Gruden, 2022
+
+
 
 %////////////////ARRAY and ENCOUNTER PARAMETERS & INFO/////////////
 
@@ -15,14 +35,14 @@ parameters.encounter= 'Lasker_AC109';
 % Specify speed of sound
 parameters.c=1500; 
 
-% Specify which two channels of your recordings you want to cross-correlate
-% Select two that are furthest apart
-parameters.channels = [1,6]; % Note All NOAA 2013 data has only four channels
+% Specify which two channels of your recordings are used to compute 
+% bearings/TDOAs:
+parameters.channels = [1,6]; 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~COMPUTED:~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%Compute distance between sensors used for cross-correlation:
+% Get distance between sensors used to compute bearings/TDOAs:
 Array_table=readtable('Array_Info.csv');
 RowIn = find(strcmp(Array_table.Array_name, parameters.arrayname));
 if ~isempty(RowIn)

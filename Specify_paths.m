@@ -1,13 +1,23 @@
-% Specify paths to your folders:
+function [folder, folder2save2] = Specify_paths
+% Specify paths to:
+% 1) Database folder (.sqlite3)
+% 2) Folder where you want extracted Pamguard SQL tables in .csv format to be saved to
+% 3) folder where results (tables with detection information) to be saved to
+% 
 
-%\\\\\\\\\\\\\\\\\ Specify database (.sqlite3) folder (with path) \\\\\\\\\\\\\\\\\\\\\\\\\
-sqldatabase='/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/PAM20013b_HICEAS_Lasker_AC109_Trial-1b.sqlite3';
+% 1) \\\\\\\\\\ Path to database (.sqlite3) folder \\\\\\\\\\\\
+s=what('./Test_example/Data/Pamguard_database_sqlite3/'); 
+folder.sqldatabase = [s.path,'/'];
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-%\\\\ Specify Folder (with path) where you want extracted SQL tables (.csv) to be saved to \\\\
-sqltables = '/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/Extracted_Tables/';
+% 2) \\\\ Path to folder for SQL tables (.csv) to be saved to \\\\
+s=what('./Test_example/Data/Extracted_tables/'); 
+folder.sqltables = [s.path,'/'];
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-%\\\\ Specify Folder (with path) where you want Tables containing detection info to be saved to \\\\
-folder2save2_info = '/Users/pinagruden/Dropbox/Pina/HAWAII/MATLAB/Ground_truth_fromJenn/Lasker_AC109/';
+% 3) \\\\ Path to where tables containing detection info will be stored \\\\
+s=what('./Test_example/Results/'); 
+folder2save2 = [s.path,'/'];
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+end

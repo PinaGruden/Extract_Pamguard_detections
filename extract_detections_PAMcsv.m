@@ -1,4 +1,31 @@
 function [Annotated_data, All_data] = extract_detections_PAMcsv(Tables,parameters,sig_type)
+% extract_detections_PAMcsv.m is a function that gets .csv tables extracted
+% from Pamguard and extracts relevant information into a Matlab table, and
+% computes corresponding TDOAs for each detection.
+%
+% INPUTS:
+% - Tables -a structure containing tables from .csv files. It has 2 fields:
+%           ~ data - table data
+%           ~ tablename - table name as it comes out of Pamguard database
+% - parameters - a structure containing array and encounter data. Has at
+%           least 2 fields:
+%           ~ d - sensor separation (m)
+%           ~ c - speed of sound (m/s)
+% - sig_type - string specifying signal type ('clciks'/'whistles')
+%
+% OUTPUTS:
+% - Annotated_data - a table with annotated data from the click/whistle
+%       detector. It has 7 columns:
+%           ~ tdoa
+%           ~ bearing
+%           ~ time - relative time from beginning of the encounter (in s)
+%           ~ time_UTC - date and time for each detection in UTC
+%           ~ groupID - parent group IDs from the Pamguard sql database.
+%           ~ annotatedID - annotated labels from the Pamguard sql database.
+%           ~ origUID - original IDs for annotated data from the Pamguard sql database.
+% - All_data
+%
+
 
 switch sig_type
 
