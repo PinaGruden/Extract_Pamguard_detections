@@ -14,6 +14,7 @@ clear, close all
 addpath('./matlab-sqlite3-driver'); 
 % Make sure the driver is installed properly (see instructions inside 
 % './matlab-sqlite3-driver' folder
+addpath('./extract_detections_code'); 
 
 %\\\\\\\\\\\\\\\\\ Get Paths to folders \\\\\\\\\\\\\\\\\\\\\\\\\
 [folder, folder2save2] = Specify_paths;

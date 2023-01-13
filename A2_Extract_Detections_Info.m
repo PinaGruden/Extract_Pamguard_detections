@@ -12,6 +12,8 @@
 
 clear, close all
 
+addpath('./extract_detections_code'); 
+
 %\\\\\\\\\\\\\\\\\\\\ Get Paths to folders \\\\\\\\\\\\\\\\\\
 [folder, folder2save2] =Specify_paths;
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
