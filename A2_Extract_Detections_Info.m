@@ -41,8 +41,8 @@ end
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\ SAVE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-save([folder2save2,parameters.encounter,'_Extracted_AnnotatedWhistles.mat'],'Annotated_data_w','All_data_w','parameters','sqldatabase')
-save([folder2save2,parameters.encounter,'_Extracted_AnnotatedClicks.mat'],'Annotated_data_c','All_data_c','parameters','sqldatabase')
+save([folder2save2,parameters.encounter,'_Extracted_AnnotatedWhistles.mat'],'Annotated_data_w','All_data_w','parameters','folder')
+save([folder2save2,parameters.encounter,'_Extracted_AnnotatedClicks.mat'],'Annotated_data_c','All_data_c','parameters','folder')
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
      
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
