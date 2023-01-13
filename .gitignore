@@ -2,8 +2,14 @@
 ######################
 /matlab-sqlite3-driver/
 /original_scripts/
+/Test_example/
 Specify_array_parameters.m
+Specify_paths.m
 Array_Info.csv
+
+# Matlab generated files #
+######################
+*.asv
 
 # OS generated files #
 ######################
