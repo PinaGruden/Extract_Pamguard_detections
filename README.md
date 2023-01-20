@@ -2,6 +2,12 @@
 
 This repository contains code that extracts Pamguard detections (clicks, whistles) from Pamguard sqlite3 database file to .csv and Matlab tables. 
 
+## Required Matlab toolboxes
+
+This package was developed with Matlab version 2022a (9.12). It uses the following Matlab toolboxes:
+- Statistics and Machine Learning Toolbox
+
+
 ## How to use
 Before running the package specify the paths to folders, and array parameters for your application by modifying the following scripts: 
 - Array_info.csv - If needed add the array information in a new row, specifying sensor separations for your array. Note- the name you give your array should then match the one you specify in the Specify_array_parameters.m.
