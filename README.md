@@ -7,6 +7,29 @@ This repository contains code that extracts Pamguard detections (clicks, whistle
 This package was developed with Matlab version 2022a (9.12). It uses the following Matlab toolboxes:
 - Statistics and Machine Learning Toolbox
 
+## Package contents
+
+The package contains the following functions, scripts and files in the main folder:
+
+- **A1_Extract_Tables_from_SQLite.m** - main script that extracts Tables from the Pamguard's SQLite3 database.
+- **A2_Extract_Detections_Info.m** - main script that extracts Detected and Annotated (if available) vocalizations from Pamguard files.
+- **Array_Info.csv** - a table specifying array spacing.
+- **README.md** - readme document specifying package usage.
+- **Specify_array_parameters.m** - specifies parameters for your encounter and array.
+- **Specify_paths.m**  - specifies paths to folders where data is located and results saved to.
+
+
+
+The package contains the following folders in the main folder:
+1) **./extract_detections_code/** - contains code to extract tables from SQLite3 database, and extract detections information from tables. Functions included are:
+   
+        - **extract_detections_PAMcsv.m** - extracts relevant detection information from .csv tables into a Matlab table.
+        - **extract_table_from_sqlite.m** - extracts a specified table from a SQLite3 database.
+
+2) **./matlab-sqlite3-driver/** - Third party package that contains driver for SQLite3 database.
+3) **./Test_example/** - contains data to use for testing the package works correctly.
+
+
 
 ## How to use
 Before running the package specify the paths to folders, and array parameters for your application by modifying the following scripts: 
