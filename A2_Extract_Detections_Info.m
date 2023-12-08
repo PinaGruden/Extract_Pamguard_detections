@@ -24,6 +24,9 @@ addpath('./extract_detections_code');
 
 %\\\\\\\\ LOAD all tables and their data into a struture caled Tables:\\\\\
 tables =dir(fullfile(folder.sqltables,'*.csv'));
+% elimanate OS-X generated files
+idx=  cellfun(@(x) ~strcmp(x(1),'.'), {tables.name}); %get indices of all files that are not '.'
+tables=tables(idx);
 
 N=size(tables,1);
 Tables(N).data =[];

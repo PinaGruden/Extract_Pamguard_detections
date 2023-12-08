@@ -33,6 +33,9 @@ addpath('./extract_detections_code');
 %       ~ 'Click_Detector_OfflineEvents'
 
 file = dir(fullfile(folder.sqldatabase,'*.sqlite3' ) );
+% elimanate OS-X generated files
+idx=  cellfun(@(x) ~strcmp(x(1),'.'), {file.name}); %get indices of all files that are not '.'
+file=file(idx);
 
 %For whistles
 extract_table_from_sqlite([folder.sqldatabase,file.name],'Sound_Acquisition',folder.sqltables);
