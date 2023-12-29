@@ -112,6 +112,8 @@ switch sig_type
             set(h(n), 'MarkerFaceColor', colors(n));
         end
         plot(time_UTC_all,tdoas_all,'k.')
+        xlabel('Time (UTC)'), ylabel('TDOA (s)')
+        set(gca,'FontSize',16)
         %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     case 'clicks'
@@ -187,6 +189,8 @@ switch sig_type
             set(h(n), 'MarkerFaceColor', colors(n));
         end
         plot(time_UTC_all,tdoas_all,'k.')
+        xlabel('Time (UTC)'), ylabel('TDOA (s)')
+        set(gca,'FontSize',16)
         %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
         %/////////////////////////////////////////////////////////////////////
