@@ -2,6 +2,8 @@
 
 This repository contains code that extracts Pamguard detections (clicks, whistles) from Pamguard SQLite3 database file to .csv and Matlab tables. It also computes Time-Difference-Of-Arrivals (TDOAs) for the detected signals (for a given sensor spacing).
 
+Copyright (c) 2024, Pina Gruden
+
 ## 1. Required Matlab version and toolboxes
 
 This package was developed with **Matlab version 2022a (9.12)**. It uses the following Matlab toolboxes:
